@@ -18,15 +18,22 @@ defmodule P172Web.UserResetPasswordLive do
           Oops, something went wrong! Please check the errors below.
         </.error>
 
-        <.input field={@form[:password]} type="password" label="New password" required />
-        <.input
+        <P172Web.CoreComponents.input
+          field={@form[:password]}
+          type="password"
+          label="New password"
+          required
+        />
+        <P172Web.CoreComponents.input
           field={@form[:password_confirmation]}
           type="password"
           label="Confirm new password"
           required
         />
         <:actions>
-          <.button phx-disable-with="Resetting..." class="w-full">Reset Password</.button>
+          <P172Web.CoreComponents.button phx-disable-with="Resetting..." class="w-full">
+            Reset Password
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
 

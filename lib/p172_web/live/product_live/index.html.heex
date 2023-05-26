@@ -2,18 +2,21 @@
   Listing Products
   <:actions>
     <.link patch={~p"/products/new"}>
-      <.button>New Product</.button>
+      <P172Web.CoreComponents.button>New Product</P172Web.CoreComponents.button>
     </.link>
   </:actions>
 </.header>
 
-<.table
+<P172Web.CoreComponents.table
   id="products"
   rows={@streams.products}
   row_click={fn {_id, product} -> JS.navigate(~p"/products/#{product}") end}
 >
   <:col :let={{_id, product}} label="Model"><%= product.model %></:col>
   <:col :let={{_id, product}} label="Price"><%= product.price %></:col>
+  <:col :let={{_id, product}} label="Reviews">
+    <%= for r <- product.reviews, do: "#{r.author} - Stars: #{r.stars}" %>
+  </:col>
   <:action :let={{_id, product}}>
     <div class="sr-only">
       <.link navigate={~p"/products/#{product}"}>Show</.link>
@@ -28,9 +31,14 @@
       Delete
     </.link>
   </:action>
-</.table>
+</P172Web.CoreComponents.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="product-modal" show on_cancel={JS.patch(~p"/products")}>
+<P172Web.CoreComponents.modal
+  :if={@live_action in [:new, :edit]}
+  id="product-modal"
+  show
+  on_cancel={JS.patch(~p"/products")}
+>
   <.live_component
     module={P172Web.ProductLive.FormComponent}
     id={@product.id || :new}
@@ -39,4 +47,4 @@
     product={@product}
     patch={~p"/products"}
   />
-</.modal>
+</P172Web.CoreComponents.modal>

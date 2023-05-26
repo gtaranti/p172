@@ -12,11 +12,11 @@ defmodule P172Web.UserForgotPasswordLive do
       </.header>
 
       <.simple_form for={@form} id="reset_password_form" phx-submit="send_email">
-        <.input field={@form[:email]} type="email" placeholder="Email" required />
+        <P172Web.CoreComponents.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
-          <.button phx-disable-with="Sending..." class="w-full">
+          <P172Web.CoreComponents.button phx-disable-with="Sending..." class="w-full">
             Send password reset instructions
-          </.button>
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
       <p class="text-center text-sm mt-4">

@@ -31,11 +31,18 @@ defmodule P172Web.UserRegistrationLive do
           Oops, something went wrong! Please check the errors below.
         </.error>
 
-        <.input field={@form[:email]} type="email" label="Email" required />
-        <.input field={@form[:password]} type="password" label="Password" required />
+        <P172Web.CoreComponents.input field={@form[:email]} type="email" label="Email" required />
+        <P172Web.CoreComponents.input
+          field={@form[:password]}
+          type="password"
+          label="Password"
+          required
+        />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <P172Web.CoreComponents.button phx-disable-with="Creating account..." class="w-full">
+            Create an account
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
     </div>

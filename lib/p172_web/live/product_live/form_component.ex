@@ -19,10 +19,29 @@ defmodule P172Web.ProductLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:model]} type="text" label="Model" />
-        <.input field={@form[:price]} type="text" label="Price" />
+        <P172Web.CoreComponents.input field={@form[:model]} type="text" label="Model" />
+        <P172Web.CoreComponents.input field={@form[:price]} type="text" label="Price" />
+
+        <div id="reviews">
+          <.inputs_for :let={f_nested} field={@form[:reviews]}>
+            <input type="hidden" name="product[reviews_order][]" />
+
+            <div class="flex space-x-2">
+              <input type="hidden" name="list[reviews_order][]" value={f_nested.index} />
+              <P172Web.CoreComponents.input field={f_nested[:author]} type="text" label="Author" />
+              <P172Web.CoreComponents.input field={f_nested[:stars]} type="text" label="Stars" />
+            </div>
+          </.inputs_for>
+        </div>
+        <label class="cursor-pointer">
+          <input type="checkbox" name="product[reviews_order][]" class="" />
+          <P172Web.CoreComponents.icon name="hero-plus-circle" /> add more
+        </label>
+
         <:actions>
-          <.button phx-disable-with="Saving...">Save Product</.button>
+          <P172Web.CoreComponents.button phx-disable-with="Saving...">
+            Save Product
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
     </div>
@@ -41,6 +60,9 @@ defmodule P172Web.ProductLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"product" => product_params}, socket) do
+    product_params
+    |> IO.inspect(label: "\nlib/p172_web/live/product_live/form_component.ex:#{__ENV__.line}")
+
     changeset =
       socket.assigns.product
       |> Products.change_product(product_params)

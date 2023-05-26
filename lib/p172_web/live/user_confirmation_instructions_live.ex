@@ -12,11 +12,11 @@ defmodule P172Web.UserConfirmationInstructionsLive do
       </.header>
 
       <.simple_form for={@form} id="resend_confirmation_form" phx-submit="send_instructions">
-        <.input field={@form[:email]} type="email" placeholder="Email" required />
+        <P172Web.CoreComponents.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
-          <.button phx-disable-with="Sending..." class="w-full">
+          <P172Web.CoreComponents.button phx-disable-with="Sending..." class="w-full">
             Resend confirmation instructions
-          </.button>
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
 

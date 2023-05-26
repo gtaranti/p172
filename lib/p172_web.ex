@@ -86,6 +86,7 @@ defmodule P172Web do
       # Core UI components and translation
       import P172Web.CoreComponents
       import P172Web.Gettext
+      use PetalComponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

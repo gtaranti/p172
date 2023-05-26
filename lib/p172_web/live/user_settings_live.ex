@@ -18,8 +18,13 @@ defmodule P172Web.UserSettingsLive do
           phx-submit="update_email"
           phx-change="validate_email"
         >
-          <.input field={@email_form[:email]} type="email" label="Email" required />
-          <.input
+          <P172Web.CoreComponents.input
+            field={@email_form[:email]}
+            type="email"
+            label="Email"
+            required
+          />
+          <P172Web.CoreComponents.input
             field={@email_form[:current_password]}
             name="current_password"
             id="current_password_for_email"
@@ -29,7 +34,9 @@ defmodule P172Web.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Email</.button>
+            <P172Web.CoreComponents.button phx-disable-with="Changing...">
+              Change Email
+            </P172Web.CoreComponents.button>
           </:actions>
         </.simple_form>
       </div>
@@ -43,19 +50,24 @@ defmodule P172Web.UserSettingsLive do
           phx-submit="update_password"
           phx-trigger-action={@trigger_submit}
         >
-          <.input
+          <P172Web.CoreComponents.input
             field={@password_form[:email]}
             type="hidden"
             id="hidden_user_email"
             value={@current_email}
           />
-          <.input field={@password_form[:password]} type="password" label="New password" required />
-          <.input
+          <P172Web.CoreComponents.input
+            field={@password_form[:password]}
+            type="password"
+            label="New password"
+            required
+          />
+          <P172Web.CoreComponents.input
             field={@password_form[:password_confirmation]}
             type="password"
             label="Confirm new password"
           />
-          <.input
+          <P172Web.CoreComponents.input
             field={@password_form[:current_password]}
             name="current_password"
             type="password"
@@ -65,7 +77,9 @@ defmodule P172Web.UserSettingsLive do
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Password</.button>
+            <P172Web.CoreComponents.button phx-disable-with="Changing...">
+              Change Password
+            </P172Web.CoreComponents.button>
           </:actions>
         </.simple_form>
       </div>

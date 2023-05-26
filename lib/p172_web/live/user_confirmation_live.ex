@@ -9,9 +9,11 @@ defmodule P172Web.UserConfirmationLive do
       <.header class="text-center">Confirm Account</.header>
 
       <.simple_form for={@form} id="confirmation_form" phx-submit="confirm_account">
-        <.input field={@form[:token]} type="hidden" />
+        <P172Web.CoreComponents.input field={@form[:token]} type="hidden" />
         <:actions>
-          <.button phx-disable-with="Confirming..." class="w-full">Confirm my account</.button>
+          <P172Web.CoreComponents.button phx-disable-with="Confirming..." class="w-full">
+            Confirm my account
+          </P172Web.CoreComponents.button>
         </:actions>
       </.simple_form>
 
