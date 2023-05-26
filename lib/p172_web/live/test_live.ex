@@ -51,11 +51,22 @@ defmodule P172Web.TestLive do
               <div class="flex space-x-2">
                 <input type="hidden" name="person[cities_order][]" value={f_nested.index} />
                 <.field type="text" field={f_nested[:name]} />
+                <div>
+                  <.form_field
+                    type="radio_group"
+                    options={[{"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}]}
+                    form={f_nested}
+                    field={:rating}
+                    layout={:row}
+                  label="Rating with form_field"
+                  />
+                </div>
                 <.field
                   type="radio-group"
                   options={[{"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}]}
                   field={f_nested[:rating]}
                   group_layout="row"
+                  label="Rating with field"
                 />
                 <label class="cursor-pointer">
                   <input
